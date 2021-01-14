@@ -14,7 +14,7 @@ resource "aws_elb" "this" {
   subnets         = var.subnets
   internal        = var.internal
   #security_groups = var.security_groups
-  security_groups = module.elb_security_group.id
+  #security_groups = module.elb_security_group.id
   cross_zone_load_balancing   = var.cross_zone_load_balancing
   idle_timeout                = var.idle_timeout
   connection_draining         = var.connection_draining
