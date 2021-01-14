@@ -75,7 +75,7 @@ variable "health_check" {
 variable "number_of_instances" {
   description = "Number of instances to attach to ELB"
   type        = number
-  default     = 0
+  default     = 2
 }
 
 variable "instances" {

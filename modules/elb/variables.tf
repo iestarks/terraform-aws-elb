@@ -4,6 +4,12 @@ variable "create_elb" {
   default     = true
 }
 
+
+variable "vpc_id" {
+  description = "ID of the VPC where to create security group"
+  type        = string
+}
+
 variable "name" {
   description = "The name of the ELB"
   type        = string
@@ -16,10 +22,10 @@ variable "name_prefix" {
   default     = null
 }
 
-variable "security_groups" {
-  description = "A list of security group IDs to assign to the ELB"
-  type        = list(string)
-}
+# variable "security_groups" {
+#   description = "A list of security group IDs to assign to the ELB"
+#   type        = list(string)
+# }
 
 variable "subnets" {
   description = "A list of subnet IDs to attach to the ELB"

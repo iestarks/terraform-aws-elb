@@ -1,3 +1,10 @@
+
+module "elb_security_group" {
+source = "../../../terraform-aws-security-group/modules/http-80/"
+vpc_id = var.vpc_id
+name = var.name
+}
+
 resource "aws_elb" "this" {
   count = var.create_elb ? 1 : 0
 
@@ -6,8 +13,8 @@ resource "aws_elb" "this" {
 
   subnets         = var.subnets
   internal        = var.internal
-  security_groups = var.security_groups
-
+  #security_groups = var.security_groups
+  security_groups = module.elb_security_group.id
   cross_zone_load_balancing   = var.cross_zone_load_balancing
   idle_timeout                = var.idle_timeout
   connection_draining         = var.connection_draining
