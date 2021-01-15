@@ -13,7 +13,7 @@ variable "vpc_id" {
 variable "name" {
   description = "The name of the ELB"
   type        = string
-  default     = null
+  default     = "elb-usbank"
 }
 
 variable "name_prefix" {
