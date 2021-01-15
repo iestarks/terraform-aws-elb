@@ -1,7 +1,7 @@
 variable "name" {
   description = "The name of the ELB"
   type        = string
-  default     = null
+  default     = "elb-"
 }
 
 variable "name_prefix" {
