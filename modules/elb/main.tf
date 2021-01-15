@@ -2,7 +2,8 @@
 module "elb_security_group" {
 source = "../../../terraform-aws-security-group/modules/http-80/"
 vpc_id = var.vpc_id
-name = var.name
+#name = var.name
+
 }
 
 resource "aws_elb" "this" {
