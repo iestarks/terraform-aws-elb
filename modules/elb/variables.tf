@@ -86,10 +86,10 @@ variable "tags" {
   default     = {}
 }
 
-# variable "listener" {
-#   description = "A list of listener blocks"
-#   type        = list(map(string))
-# }
+variable "listener" {
+  description = "A list of listener blocks"
+  type        = list(map(string))
+}
 
 
 variable "access_logs" {
