@@ -5,6 +5,22 @@ variable "create_elb" {
 }
 
 
+variable "appname" {
+  description = "App server name to be used on all the resources as identifier"
+  type        = string
+  default     = "usbank-appserv"
+}
+
+variable "ingress_rules" {
+    type = list(object({
+      from_port   = number
+      to_port     = number
+      protocol    = string
+      cidr_blocks  = string
+      description = string
+    }))
+}
+
 variable "vpc_id" {
   description = "ID of the VPC where to create security group"
   type        = string
@@ -13,8 +29,10 @@ variable "vpc_id" {
 variable "name" {
   description = "The name of the ELB"
   type        = string
-  default     = "elb-usbank"
+  default     = "http-80-elb"
 }
+
+
 
 variable "name_prefix" {
   description = "The prefix name of the ELB"
@@ -22,10 +40,10 @@ variable "name_prefix" {
   default     = null
 }
 
-# variable "security_groups" {
-#   description = "A list of security group IDs to assign to the ELB"
-#   type        = list(string)
-# }
+variable "security_groups" {
+  description = "A list of security group IDs to assign to the ELB"
+  type        = list(string)
+}
 
 variable "subnets" {
   description = "A list of subnet IDs to attach to the ELB"
@@ -68,10 +86,11 @@ variable "tags" {
   default     = {}
 }
 
-variable "listener" {
-  description = "A list of listener blocks"
-  type        = list(map(string))
-}
+# variable "listener" {
+#   description = "A list of listener blocks"
+#   type        = list(map(string))
+# }
+
 
 variable "access_logs" {
   description = "An access logs block"
@@ -83,3 +102,4 @@ variable "health_check" {
   description = "A health check block"
   type        = map(string)
 }
+

@@ -1,21 +1,27 @@
+#
 
-module "elb_security_group" {
-source = "../../../terraform-aws-security-group/modules/http-80/"
-vpc_id = var.vpc_id
-#name = var.name
+data "aws_vpc" "usbank_vpc" {
 
+  filter {
+    name = "tag:Name"
+    values = ["bankus_east-1-vpc"]
+  }
 }
+
+##################################################
+## Build the ELB
+####################################################
 
 resource "aws_elb" "this" {
   count = var.create_elb ? 1 : 0
 
   name        = var.name
   name_prefix = var.name_prefix
-
+  #ingress     = var.elb_ingress_rules
   subnets         = var.subnets
   internal        = var.internal
-  #security_groups = var.security_groups
-  #security_groups = module.elb_security_group.id
+  #security_groups = data.aws_vpc.usbank_vpc.*.id
+  security_groups = var.security_groups
   cross_zone_load_balancing   = var.cross_zone_load_balancing
   idle_timeout                = var.idle_timeout
   connection_draining         = var.connection_draining
@@ -42,7 +48,7 @@ resource "aws_elb" "this" {
     }
   }
 
-  health_check {
+  health_check  {
     healthy_threshold   = lookup(var.health_check, "healthy_threshold")
     unhealthy_threshold = lookup(var.health_check, "unhealthy_threshold")
     target              = lookup(var.health_check, "target")

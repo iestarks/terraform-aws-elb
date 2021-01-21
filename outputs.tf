@@ -13,6 +13,7 @@ output "this_elb_name" {
   value       = module.elb.this_elb_name
 }
 
+
 output "this_elb_dns_name" {
   description = "The DNS name of the ELB"
   value       = module.elb.this_elb_dns_name

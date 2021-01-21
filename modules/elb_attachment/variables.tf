@@ -9,9 +9,10 @@ variable "number_of_instances" {
   type        = number
 }
 
-variable "elb" {
-  description = "The name of the ELB"
+variable "elbname" {
+  description = "ELB Name"
   type        = string
+  default = "http-80-elb"
 }
 
 variable "instances" {

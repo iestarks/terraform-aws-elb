@@ -1,8 +1,9 @@
 variable "name" {
   description = "The name of the ELB"
   type        = string
-  default     = "elb-"
 }
+
+
 
 variable "name_prefix" {
   description = "The prefix name of the ELB"
@@ -56,10 +57,7 @@ variable "tags" {
   default     = {}
 }
 
-variable "listener" {
-  description = "A list of listener blocks"
-  type        = list(map(string))
-}
+
 
 variable "access_logs" {
   description = "An access logs block"
@@ -88,4 +86,10 @@ variable "create_elb" {
   description = "Create the elb or not"
   type        = bool
   default     = true
+}
+
+variable "elbname" {
+  description = "ELB name"
+  type        = string
+  default = "http-80-elb"
 }
